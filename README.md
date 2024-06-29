@@ -76,7 +76,7 @@ This information is available in the subdirectories' README.md files but to see 
 Discussed in more detail in the **/Code** folder README.md
 
 ## Resources
-Discussed in more detail in the **/Resources** folder README.md
+Discussed in more detail in the **/Resources** folder [README.md](https://github.com/Ben-Bartlett/RS_LDO/blob/main/Resources/README.md)
 
 ## Contributing
 1. Fork the repository.
