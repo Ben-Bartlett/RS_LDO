@@ -64,7 +64,6 @@ or
     ```bash
     realsense-viewer
 
-
 ## Usage
 ### Basic Usage
 This information is available in the subdirectories' README.md files but to see the code in action and verify the installation
