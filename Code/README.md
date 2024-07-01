@@ -28,26 +28,37 @@ This folder will be kept up to date but as of now, the second last meeting of th
 2. On processing speed the criteria of 60 FPS has been set. Some speed, but in theory well doable. As such the bag files will need to be recorded at 60FPS, which is the max for the RGB in theory based on the realsense-viewer settings. The depth can go much higher but without RGB we lose all segmenation of the pointcloud with regards to the "rope".
 
 3. The understanding of the point-to-point mapping criteria was incorrect. Some confusion arose be it due to unfamiliarity, translation and notation but it seems to be clear now nearing the end of the project. While we know in a pointcloud, even of a static object, the points will vary from frame to frame. As such we need to determine "features" or actual frame to frame mappings. This is achievable with the splines created. Given the splines are created from real input data we can look at the following:
- 
-Given two splines at times T1 and T2, we want to determine the difference between any equivalent points along the splines. Let:
 
-- \( \mathbf{P}_1(\alpha) = [X_1(\alpha), Y_1(\alpha), Z_1(\alpha)] \) be the spline at time \( T_1 \).
-- \( \mathbf{P}_2(\alpha) = [X_2(\alpha), Y_2(\alpha), Z_2(\alpha)] \) be the spline at time \( T_2 \).
+___________
+___________
+<br></br>
+*Given two splines at times **T<sub>1</sub>** and **T<sub>2</sub>**, we want to determine the difference between any equivalent points along the splines. <br></br>
+Let:*
 
-Here, \(\alpha\) ranges from 0 to 1 and represents a percentage along the spline.
+   - ***P<sub>1</sub>(&alpha;)** = [X<sub>1</sub>(&alpha;); Y<sub>1</sub>(&alpha;); Z<sub>1</sub>(&alpha;)] be the spline at time T<sub>1</sub>.*
 
-To determine the difference between equivalent points on the splines at any \(\alpha\), we compute the difference vector:
+   - ***P<sub>2</sub>(&alpha;)** = [X<sub>2</sub>(&alpha;); Y<sub>2</sub>(&alpha;); Z<sub>2</sub>(&alpha;)] be the spline at time T<sub>2</sub>.*
 
-\[ \Delta \mathbf{P}(\alpha) = \mathbf{P}_2(\alpha) - \mathbf{P}_1(\alpha) \]
+*Here, **(&alpha;)** ranges from 0 to 1 and represents a percentage along the spline.*
 
-This results in:
+<br></br>
+*To determine the difference between equivalent points on the splines at any **(&alpha;)**, we compute the difference vector:*
 
-\[ \Delta \mathbf{P}(\alpha) = [X_2(\alpha) - X_1(\alpha), Y_2(\alpha) - Y_1(\alpha), Z_2(\alpha) - Z_1(\alpha)] \]
+   - ***&Delta; P(&alpha;)** = P<sub>2</sub>(&alpha;) - P<sub>1</sub>(&alpha;)*
 
-This difference vector \( \Delta \mathbf{P}(\alpha) \) represents the change in position of equivalent points along the splines from time \( T_1 \) to time \( T_2 \).
+<br></br>
+*This results in:*
 
-@Paddy sound. 
+   - ***&Delta; P(&alpha;)** = [X<sub>2</sub>(&alpha;) - X<sub>1</sub>(&alpha;); Y<sub>2</sub>(&alpha;) - Y<sub>1</sub>(&alpha;); Z<sub>2</sub>(&alpha;) - Z<sub>1</sub>(&alpha;)]*
 
+*This difference vector **&Delta; P(&alpha;)** represents the change in position of equivalent points along the splines from time **T<sub>1</sub>** to time **T<sub>2</sub>**.*
+
+
+
+<sub>@Paddy sound</sub>
+<br></br>
+______________
+______________
 
 - The file seg\_tuning_\bag.py was mentioned elsewhere and linked, but it will allow you to choose the Red pixels to save an LAB colour to txt file and you can also adjust the canny thresholds "preferably" to a noisy low level but you can adjust as needed. 
 
