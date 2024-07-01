@@ -28,7 +28,7 @@ __This was completed such that the point cloud could be segmentated based on the
   - Selecting a pixel with mouse click to save an LAB colour to a txt file.
   - Pressing p moves to the live image to show it segmented based on the selected colour
 
-__To Note:__ this functionality is available in the __/Code/Final__ folder in [seg\_tuning\_bag.py]() and __should__ be utilized before running any RED based segmentation as it should use a value relevant to the current illumination etc. Most of these files use similar values, but they were chosen based on live images in the testing environment. This file also shows and allows the tuning of the canny thresholds and should also be adjusted for the current test. The sliders were also used for the multi otsu thresholding but anything above 5 would crash the program. This is left as a comment in the image\_segmentation\_test.py file. 
+__To Note:__ this functionality is available in the __/Code/Final__ folder in [seg\_tuning\_bag.py](https://github.com/Ben-Bartlett/RS_LDO/blob/main/Code/Final/seg_tuning_bag.py) and __should__ be utilized before running any RED based segmentation as it should use a value relevant to the current illumination etc. Most of these files use similar values, but they were chosen based on live images in the testing environment. This file also shows and allows the tuning of the canny thresholds and should also be adjusted for the current test. The sliders were also used for the multi otsu thresholding but anything above 5 would crash the program. This is left as a comment in the image\_segmentation\_test.py file. 
 
 - seg\_image\_rgb.py and seg\_image\_rgb\_depth.py show the "__finalised__" process of segmenting the images to detect the red rope. It is explained in detail at the start of seg\_image\_rgb.py, but, this file includes:
   - LAB segmentation 
@@ -64,7 +64,7 @@ This realtime streaming was later solved.
 
 - 3d\_cylinder\_open3d.py produces a 3d cylinder in Open3D. Self explanatory but is the basis of creating a virtual cable in the Open3D environment as this was chosen due to the link with the Realsense sensors and code base. Other choices such as Unity and ROS are also availble.
 
-- load\_pcd.py loads a pcd into an Open3D environment. __The PCD files can be produced by looking at the code in [bag\_pc\_optical\_flow.py]() as this is the only file with that functionality left in due to the numerous interations of coding and testing.__
+- load\_pcd.py loads a pcd into an Open3D environment. __The PCD files can be produced by looking at the code in [bag\_pc\_optical\_flow.py](https://github.com/Ben-Bartlett/RS_LDO/blob/main/Code/Development/Cable_Generation/bag_pc_optical_flow.py) as this is the only file with that functionality left in due to the numerous interations of coding and testing.__
 
 - pcd\_and\_twin.py combines both of the above programs, opening a pcd and generating the straight cylinder. It does not offer much else but was the first step to match a cylinder to the pointcloud data. 
 
