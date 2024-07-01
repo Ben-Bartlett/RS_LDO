@@ -57,7 +57,10 @@ All developments were completed using Python and the realsense-viewer applicatio
 
 or
 
-- Utilise the bag files added to the repository
+- Utilise the bag files added to the repository. __This can be completed by running__
+  ```bash
+  chmod +x download_data.sh
+  ./download_data.sh
 
 - Lastly install the Realsense SDK following the instructions [here](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md)
   - verify with:
