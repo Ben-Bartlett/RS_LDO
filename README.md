@@ -66,13 +66,24 @@ or
 
 ## Usage
 ### Basic Usage
-This information is available in the subdirectories' README.md files but to see the code in action and verify the installation
+This information is available in the subdirectories' README.md files but to see the code in action and verify the installation I would recommend starting with the initial code.
   ```bash
-  python final/bag_pc_optical_flow.py
+  python /Code/Initial/Live_Scripts/Stream_RGB_Depth_2IR_live.py
   ```
+This should open the connected cameras live RGB, depth and IR streams. 
 
-## Development Stages
-Discussed in more detail in the **/Code** folder README.md
+## Utilising the Repo 
+### First time
+I would recommend starting with the Resouces and Reading the Report [here]().
+This summarises all information. THe specific information is also in each subdirectory and its README.
+
+For running the code I would recommend starting with the script detailed in basic usage above as a test. 
+
+For understanding the codebase or how to develop any desired functionality, I would recommend going through all of the /Code/Initial/Bag_Scripts. You will need to download the bag files via ..
+
+For understanding the development process that led to the final outputted code and to either verify the processing is correct or make changes, I would recommend going through the code examples in the /Code/Development folder. 
+
+For utilising the main devlopment of the repo, it can be found in the /Code/Final Directory. This code .....
 
 ## Resources
 Discussed in more detail in the **/Resources** folder [README.md](https://github.com/Ben-Bartlett/RS_LDO/blob/main/Resources/README.md)
