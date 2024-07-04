@@ -60,6 +60,12 @@ This realtime streaming was later solved.
   - i.e a point cloud of "just" the rope. (more or less)
 
 
+- how\_points\_arranged\_pcd.py shows how the points are arranged in the pcd. Without sorting the points are Raster Scan aligned, top to bottom. 
+  - With PCA sorting we get a lovely right to left sorting of the point cloud. PCA is used to determine the principal axes of the point cloud, which are then used to reorder the points based on their projection along these axes. Or in other words, magic. 
+  - This is much better than sorting based on x coordinates as if the rope is not mostly going left to right then sorting the points left to right based on x does not lead to a "continuity" of points representing the "path" of the points. 
+  - A PCD is added also for demonstration, showing the points addding in their order. Remove the sorting code if you want to see the orignal order. 
+
+
 ## Cable_Generation
 
 - 3d\_cylinder\_open3d.py produces a 3d cylinder in Open3D. Self explanatory but is the basis of creating a virtual cable in the Open3D environment as this was chosen due to the link with the Realsense sensors and code base. Other choices such as Unity and ROS are also availble.
