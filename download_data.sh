@@ -1,16 +1,35 @@
 #!/bin/bash
 
-curl 'https://northeurope1-mediap.svc.ms/transform/zip?cs=fFNQTw' -X POST -H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/x-www-form-urlencoded' -H 'Origin: https://ulcampus-my.sharepoint.com' -H 'Connection: keep-alive' -H 'Upgrade-Insecure-Requests: 1' -H 'Sec-Fetch-Dest: iframe' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: cross-site' -H 'TE: trailers' --data-raw 'zipFileName=Data.zip&guid=cf722e0b-d542-4745-9b26-329f64e47bec&provider=spo&files=%7B%22items%22%3A%5B%7B%22name%22%3A%22Data%22%2C%22size%22%3A0%2C%22docId%22%3A%22https%3A%2F%2Fulcampus-my.sharepoint.com%3A443%2F_api%2Fv2.0%2Fdrives%2Fb%217EBgFLJhfkqQMlvmC0Pekhg3anbWNclJvxleWEFgOTk1VjiWmEZxS74cD7NDhKX2%2Fitems%2F01PPBRUX6SDAYD6SMKWNCKI6CSWZCP5FTZ%3Fversion%3DPublished%26access_token%3Dv1.eyJzaXRlaWQiOiIxNDYwNDBlYy02MWIyLTRhN2UtOTAzMi01YmU2MGI0M2RlOTIiLCJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvdWxjYW1wdXMtbXkuc2hhcmVwb2ludC5jb21AMDA4NGI5MjQtM2FiNC00MTE2LTkyNTEtOTkzOWY2OTVlNTRjIiwiZXhwIjoiMTcxOTg4OTIwMCJ9.CggKA3N0cBIBdAoKCgRzbmlkEgIzMxIGCNqoOhABGicyYTAxOmNiMWQ6OGMxNTpmZTAwOmUxZTU6M2IwMzoyODhhOjcwMDciFG1pY3Jvc29mdC5zaGFyZXBvaW50KixySkZTcm5zRDlDOUxvZjRlc0Q2UlZld3ZwV0JFQnRiZnplV08reUxGZE9jPTB2OAFKEGhhc2hlZHByb29mdG9rZW5iBHRydWVqJDExZDI2OWEzLWY0MjYtNDYwMy05OTlkLTFiMDc1ZGYwYzVmZXIpMGguZnxtZW1iZXJzaGlwfDEwMDMyMDAwZDVlNzBmYTlAbGl2ZS5jb216ATDCASowIy5mfG1lbWJlcnNoaXB8MTcyMTgxODdAc3R1ZGVudG1haWwudWwuaWU.Xr20ixOCBFDe4u0qlOTz9HOkE5clN5wLXyrlpIcNDGE%22%2C%22isFolder%22%3Atrue%7D%5D%7D&oAuthToken=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ik1HTHFqOThWTkxvWGFGZnBKQ0JwZ0I0SmFLcyIsImtpZCI6Ik1HTHFqOThWTkxvWGFGZnBKQ0JwZ0I0SmFLcyJ9.eyJhdWQiOiJodHRwczovL25vcnRoZXVyb3BlMS1tZWRpYXAuc3ZjLm1zIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvMDA4NGI5MjQtM2FiNC00MTE2LTkyNTEtOTkzOWY2OTVlNTRjLyIsImlhdCI6MTcxOTg3MjQ4MywibmJmIjoxNzE5ODcyNDgzLCJleHAiOjE3MTk4NzY0OTMsImFjciI6IjEiLCJhY3JzIjpbInVybjp1c2VyOnJlZ2lzdGVyc2VjdXJpdHlpbmZvIl0sImFpbyI6IkFVUUF1LzhYQUFBQTl2VnhGT2xOaUpWMThac1NRV3J0elVuTGp6ZXFzd3FVYll0M0NwcURBVXhLMDNwcUdveWxxNGgzUDRSVmNrM0FTc1RWMmpMcXk0NCtlOFpKRUNUUGh3PT0iLCJhbXIiOlsicHdkIiwibWZhIl0sImFwcF9kaXNwbGF5bmFtZSI6Ik9mZmljZSAzNjUgU2hhcmVQb2ludCBPbmxpbmUiLCJhcHBpZCI6IjAwMDAwMDAzLTAwMDAtMGZmMS1jZTAwLTAwMDAwMDAwMDAwMCIsImFwcGlkYWNyIjoiMiIsImF1dGhfdGltZSI6MTcxOTg3MTczMiwiZmFtaWx5X25hbWUiOiJCQVJUTEVUVCIsImdpdmVuX25hbWUiOiJCRU4iLCJpZHR5cCI6InVzZXIiLCJpcGFkZHIiOiIyYTAxOmNiMWQ6OGMxNTpmZTAwOmUxZTU6M2IwMzoyODhhOjcwMDciLCJuYW1lIjoiVUxQRzpCQVJUTEVUVC5CRU4iLCJvaWQiOiIzZTQzNjFiOC1mN2VhLTQ5ODAtYWIwOC01ZmRlZGFlNDJlZWUiLCJvbnByZW1fc2lkIjoiUy0xLTUtMjEtMTc1ODY4MzIxOC0yOTgxMTgzMjY3LTI3NjQzMTI4NDYtMzYyMjIxIiwicHVpZCI6IjEwMDMyMDAwRDVFNzBGQTkiLCJyaCI6IjAuQVRrQUpMbUVBTFE2RmtHU1VaazU5cFhsVE5FTFQ1UjdFUnhMcnlhQVR0bGVkbjdnQU9RLiIsInNjcCI6IlNpdGVzLm1hbmFnZS5BbGwiLCJzdWIiOiJuM1c3MzNhZHFSNl85dk0tX1FpT2pjVnFMcUZQSEdWZDhxenBHeWI3QzFRIiwidGlkIjoiMDA4NGI5MjQtM2FiNC00MTE2LTkyNTEtOTkzOWY2OTVlNTRjIiwidW5pcXVlX25hbWUiOiIxNzIxODE4N0BzdHVkZW50bWFpbC51bC5pZSIsInVwbiI6IjE3MjE4MTg3QHN0dWRlbnRtYWlsLnVsLmllIiwidXRpIjoiWWRUMzUwSmxua3VXb012UktMQUNBQSIsInZlciI6IjEuMCIsInhtc19pZHJlbCI6IjEyIDEifQ.ZrH_kZt75D_FoBfLXC3KO4sbZmbTjzFFLfYQRcaP-XTAoI4lhROsjbZy1ReGRSC-nyWIploGEwfiHYTHujQeM8NxhscnlbyM9kR0cFJRJL_vgyfxcXETDKQp9BbmhkJfiEWmkL3I7mEPVDB3DqTvjuJDHOt_Kxg0l9QMbgsVwW04-4M8a9vh200yRraC306krYFubpKCnCtGxnltKc_53JeXWBsRhiyU-X6Fsvou7UFaSrU6Dkngd5jTXA1gEEveFhCfsHWlkYSl1FAUaV6IczzBl3ccYmI9conL7KwmMQCVaQyXvLgx8VJbDsYkFyf_nV-j1pvdjv1eT4SmdF455w' -o Zippty.zip;
+echo "Downloading data folder from Ben's OneDrive if the link is still valid."
+echo "https://ulcampus-my.sharepoint.com/:f:/g/personal/17218187_studentmail_ul_ie/EtIYMD9JirNEpHhStkT-lnkBOESLD-65iAI_5KaVxzuHJg"
+echo "Else email me, ben.bartlett@ul.ie."
+echo "This folder currently has about 15GB of bags."
+echo "Given this, if you download the folder manually, you need to run the fix also."
+echo "Look at README.md Installation for more info."
 
-echo "downloaded folder"
+# Download the zip file in the background and assign it job number 1
+curl --header 'Host: northeurope1-mediap.svc.ms' --user-agent 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/113.0' --header 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8' --header 'Accept-Language: en-US,en;q=0.5' --header 'Content-Type: application/x-www-form-urlencoded' --header 'Origin: https://ulcampus-my.sharepoint.com' --header 'Upgrade-Insecure-Requests: 1' --header 'Sec-Fetch-Dest: iframe' --header 'Sec-Fetch-Mode: navigate' --header 'Sec-Fetch-Site: cross-site' --request POST --data-urlencode 'zipFileName=Data.zip' --data-urlencode 'guid=78327c7e-797a-4e15-b809-267e0adc1629' --data-urlencode 'provider=spo' --data-urlencode 'files={"items":[{"name":"Data","size":0,"docId":"https://ulcampus-my.sharepoint.com:443/_api/v2.0/drives/b!7EBgFLJhfkqQMlvmC0Pekhg3anbWNclJvxleWEFgOTk1VjiWmEZxS74cD7NDhKX2/items/01PPBRUX6SDAYD6SMKWNCKI6CSWZCP5FTZ?version=Published&access_token=v1.eyJzaXRlaWQiOiIxNDYwNDBlYy02MWIyLTRhN2UtOTAzMi01YmU2MGI0M2RlOTIiLCJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvdWxjYW1wdXMtbXkuc2hhcmVwb2ludC5jb21AMDA4NGI5MjQtM2FiNC00MTE2LTkyNTEtOTkzOWY2OTVlNTRjIiwiZXhwIjoiMTcyMDIzNDgwMCJ9.CiMKCXNoYXJpbmdpZBIWNHFQOVhSblNSRVcvMno5T2xmUzVDQQoICgNzdHASAXQKCgoEc25pZBICMzMSBgiaqjoQARonMmEwMTpjYjFkOjhjMTU6ZmUwMDoxZDFkOmNlMmU6M2M3MjoxNDQxIhRtaWNyb3NvZnQuc2hhcmVwb2ludCosckpGU3Juc0Q5QzlMb2Y0ZXNENlJWZXd2cFdCRUJ0YmZ6ZVdPK3lMRmRPYz0wdjgBShBoYXNoZWRwcm9vZnRva2VuYgR0cnVlcmEwaC5mfG1lbWJlcnNoaXB8dXJuJTNhc3BvJTNhYW5vbiNhNjg2ODMyZjVmMTBiYzU2OTlhZTJkZmY4YThjNzczZjIzODQ1MWNjNGY1N2ZlYjlhMjA1MzU0OTY5OWVjYTM2egEwwgFhMCMuZnxtZW1iZXJzaGlwfHVybiUzYXNwbyUzYWFub24jYTY4NjgzMmY1ZjEwYmM1Njk5YWUyZGZmOGE4Yzc3M2YyMzg0NTFjYzRmNTdmZWI5YTIwNTM1NDk2OTllY2EzNg.6jP79YyDfEAQc2J7gTAV-xEr7tzVfIlwRSV8OpQtdO0","isFolder":true}]}' --data-urlencode 'oAuthToken=' 'https://northeurope1-mediap.svc.ms/transform/zip?cs=fFNQTw' --output 'Data.zip' &
+pid=$!
 
-unzip Zippty.zip;
+#wait for download
+wait $pid 
 
-echo "unzipped folder"
+echo "Downloaded folder successfully."
 
-rm Zippty.zip;
+echo "Downloading GIT Repo"
+git clone https://github.com/pmqs/Fix-OneDrive-Zip.git
+echo "Downloaded GIT repo"
 
-echo "removed zip folder"
+echo "Fixing ZIP"
+perl Fix-OneDrive-Zip/fix-onedrive-zip Data.zip 
+echo "Fixed ZIP"
 
+echo "Unzipping Folder"
+unzip Data.zip
+echo "Unzipped Folder"
 
+echo "Removing unnecessary files"
+rm Data.zip
+rm -rf Fix-OneDrive-Zip
+echo "Removed unnecessary files"
 
