@@ -1,53 +1,94 @@
 """
-RealSense RGB-D Processing Pipeline
+RealSense RGB-D Processing and Visualization Script
 
-1. Import necessary libraries:
-   - pyrealsense2 for RealSense camera interaction
-   - numpy for numerical operations
-   - cv2 for OpenCV image processing
-   - open3d for 3D point cloud operations
-   - sys for system-specific parameters and functions
-   - time for timing operations
-   - scipy.interpolate for spline interpolation
-   - os.path for path operations
+Usage:
+------
+This script provides functionality to process RGB-D data from Intel RealSense cameras or recorded bag files,
+perform object detection based on color and edge detection, generate a 3D point cloud, fit a spline to the
+detected object, visualize the processed data in real-time using Open3D, and save the generated point cloud
+to a PCD file. The script supports both live camera streaming and playback of recorded bag files.
 
-2. Initialize global variables:
-   - 'quit', 'pcd', and various configuration parameters for processing and visualization
+Functionality Flags:
+--------------------
+1. `bag_playback`: Boolean flag. Set to `True` to playback from a recorded .bag file, `False` for live camera.
+2. `display_rgb_masked`: Boolean flag. Set to `True` to display the masked RGB images during processing.
+3. `open3d_vis`: Boolean flag. Set to `True` to visualize the processed point cloud and spline using Open3D.
 
-3. Define utility functions:
-   - 'timer': Decorator to measure and print function execution times
-   - 'get_intrinsic_matrix': Extract intrinsic camera parameters from a frame
-   - 'initialize_realsense_pipeline': Setup RealSense pipeline and configure settings from file
+Dependencies:
+-------------
+- Python 3.x
+- OpenCV (cv2)
+- NumPy
+- PyRealSense2
+- Open3D (o3d)
+- SciPy (for spline fitting)
+- Memory Profiler (optional, for profiling memory usage)
 
-4. Define image processing functions:
-   - 'overlay_mask_on_image': Overlay a mask on an image to highlight selected color
-   - 'filter_red_colors': Filter out red colors from a frame using LAB color space
-   - 'edge_segmentation': Detect edges in a grayscale image using Canny edge detection
-   - 'enhance_mask_with_edges': Enhance a mask by combining edge information with color filtering
+Global Variables:
+-----------------
+- `total_timer_time`: Total time spent in decorated functions per loop iteration.
+- `vis_open`: Flag indicating if the Open3D visualization window is open.
+- `added_pointcloud`: Flag indicating if the point cloud and geometries have been added to the visualization.
+- `previous_spline_points`: Array storing the spline points from the previous frame.
+- `current_spline_points`: Array storing the spline points from the current frame.
+- `selected_color_lab`: LAB color space value used for object detection.
+- `tolerance`: Tolerance value used to define the range around `selected_color_lab` for object detection.
+- `canny_threshold1`, `canny_threshold2`: Threshold values for Canny edge detection.
+- `kernel_size`: Size of the kernel used for morphological operations.
+- `closing_kernel_size`: Size of the kernel used for closing operation in image processing.
 
-5. Define point cloud processing functions:
-   - 'downsample_point_cloud': Downsample a point cloud using voxel downsampling
-   - 'sort_and_average_points': Sort and average points in bins to reduce noise
-   - 'fit_spline_to_points': Fit a spline to points using spline interpolation
-   - 'shift_points_along_direction': Shift points along their principal axis to refine positioning
+Global Objects:
+---------------
+- `pcd`: Open3D PointCloud object to store the 3D point cloud data.
+- `downsampled_pcd`: Open3D PointCloud object for the downsampled version of `pcd`.
+- `shifted_average_points`: Open3D PointCloud object to visualize the shifted average points along the spline.
+- `spline`: Open3D PointCloud object representing the fitted spline.
+- `cylinder_mesh`: Open3D TriangleMesh object to represent the cylinders between spline points.
 
-6. Define RealSense frame processing functions:
-   - 'update_fps_list': Update and calculate average FPS for processing and frame capture
-   - 'rgb_processing': Perform RGB image processing to isolate objects of interest
-   - 'depth_processing': Process depth data to create a point cloud from masked RGB-D images
-   - 'calculate_spline_distance': Calculate Euclidean distances between corresponding points of two splines
+Main Functions:
+---------------
+1. `main`: Entry point of the script. Initializes camera/stream, processes frames, and visualizes the data.
+2. `initialize_camera`: Initializes RealSense pipeline and camera configuration based on user selection.
+3. `process_frames`: Waits for coherent depth and color frames, aligns them, and returns aligned frames.
+4. `rgb_processing_pipeline`: Executes RGB image processing pipeline: color masking, edge detection, and masking.
+5. `depth_processing_pipeline`: Processes depth frame using masked object data and returns Open3D Image and scale.
+6. `create_pointcloud`: Generates a 3D point cloud from color and depth data using Open3D functionalities.
+7. `pc_processing_pipeline`: Executes point cloud processing pipeline: downsampling, PCA-based sorting, spline fitting.
+8. `visualize_pc`: Updates and visualizes the Open3D visualization with the processed data and geometries.
+9. `save_callback`: Callback function to save the generated point cloud as a PCD file.
+10. `exit_callback`: Callback function to handle window closing event and exit Open3D visualization.
 
-7. Define main processing loop:
-   - 'process_frames': Continuously capture and process frames from RealSense camera
-   - Process RGB and depth data, apply filters, downsample, average points, fit splines, and calculate metrics
+Visualization Functions:
+------------------------
+1. `intialize_visualization_pc`: Initializes Open3D visualizer and registers key callback functions.
+2. `toggle_geometries`, `toggle_geometry`: Functions to toggle visibility of different geometries in Open3D.
 
-8. Main function to initialize RealSense pipeline and start processing frames.
+Image Processing Functions:
+---------------------------
+1. `filter_red_colors`: Converts frame to LAB color space and creates a mask for red objects based on `selected_color_lab`.
+2. `edge_segmentation`: Performs edge detection on a grayscale image.
+3. `enhance_mask_with_edges`: Enhances the red color mask with edge information using morphological operations.
+4. `overlay_mask_on_image`: Overlays the processed mask on the original image for visualization.
 
-9. Entry point: Start processing frames when executed as main script.
+Point Cloud Processing Functions:
+---------------------------------
+1. `downsample_point_cloud`: Downsamples the point cloud to reduce the number of points.
+2. `sort_and_average_points`: Sorts and averages points using Principal Component Analysis (PCA).
+3. `shift_points_along_direction`: Projects points along their direction to simulate a shifted version.
+4. `fit_spline_to_points`: Fits a spline to the shifted average points using spline interpolation.
+5. `add_cylinders_between_points`: Adds cylinders between spline points for visualization.
 
-Note: Each function is timed to monitor performance, and key parameters are configured to control processing steps and visualization.
+Spline Analysis Functions:
+---------------------------
+1. `calculate_spline_distance`: Calculates the Euclidean distance between corresponding points of two splines.
 
+Note:
+-----
+This script integrates multiple functionalities to process RGB-D data from RealSense cameras or recorded bag files,
+perform object detection, generate 3D point clouds, fit splines, visualize data using Open3D, and save point clouds.
+Ensure all dependencies are installed and RealSense camera is connected or bag file path is set correctly before running.
 """
+
 
 import time
 import pyrealsense2 as rs
@@ -59,6 +100,22 @@ import os
 import open3d as o3d
 from datetime import datetime
 from scipy.interpolate import splprep, splev
+
+
+################################################################
+#
+# EDIT THESE IF YOU WANT TO CHANGE VIS OR TO LIVE CAMERA
+#
+################################################################
+
+#Functionality Flags to make running file simpler with all functionality
+bag_playback = True # set false for live camera
+display_rgb_masked = True # set true to see masked RGB (verification mostly)
+open3d_vis = True # set True to see the Vis at a 10fps update rate (you can increase the vis rate if you want)
+################################################################
+
+
+
 
 # Global variable to track total time spent in decorated functions per loop iteration
 total_timer_time = 0
@@ -82,14 +139,6 @@ downsampled_pcd = o3d.geometry.PointCloud() # Initialize the global downsapmpled
 shifted_average_points = o3d.geometry.PointCloud() # Initialize the global average pointcloud
 spline = o3d.geometry.PointCloud() # Initialize the global spline pointcloud
 cylinder_mesh = o3d.geometry.TriangleMesh() # Global mesh object to hold cylinder geometries
-
-
-
-#Functionality Flags to make running file simpler with all functionality
-bag_playback = True # set false for live camera
-display_rgb_masked = False # set true to see masked RGB (verification mostly)
-open3d_vis = True # set True to see the Vis at a 10fps update rate (you can increase the vis rate if you want)
-
 
 
 
@@ -830,23 +879,3 @@ if __name__ == "__main__":
     main()
 
 
-'''
-NOTES
-With just RGB processing, the RGB processing takes longer on average in the 30Hz 
-seems to be 4-8ms mostly for 60hz 
-seems to be 7-11ms mostly for 30hz
-
-The async nature of this is possibly messing up the code timing estimations somewhat I would say as that async loop is "unknown"
-
-If we turn off RGB processing we see a loop rate of 120Hz and a frame rate of 60Hz.
-If we turn on RGB processing we see when the frame rate drops the loop rate also dropped, to a figure below 60Hz. i.e a long iteration of the loop. (higher hz shorter time spent per iteration)
-
-
-The F FPS we calculate is when we get a new frame.
-The P FPS we calculate when we hit the end of the main loop. 
-The time we calculate is how long our @timer functions take cumulatively.
-Without any processing the main loop runs much much faster than the frames arrive due to the async nature I suppose but without waiting until we get a new frame are we running into situations of time desyncronisation betweeen the main loop and the "frame grabbing"?
-
-Why is the RGB processing taking longer with the 30hz bag files?
-
-'''
