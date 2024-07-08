@@ -4,11 +4,52 @@ import cv2
 
 # Global variables for selected color in Lab space
 selected_color_lab = np.array([74, 176, 163])
-tolerance = 40  # Adjust this tolerance value as needed
+tolerance = 30  # Adjust this tolerance value as needed
 
 # Initialize Canny edge thresholds
 canny_threshold1 = 70
 canny_threshold2 = 90
+
+# Function to list and select .bag file, should be robust enough to allow the user to run the file,
+# in the folder or in the root folder. 
+def find_data_folder(start_folder):
+    current_folder = os.path.abspath(start_folder)
+    while current_folder:
+        data_folder = os.path.join(current_folder, "Data")
+        if os.path.exists(data_folder):
+            # Check if there are .bag files in the Data folder
+            bag_files = [f for f in os.listdir(data_folder) if f.endswith('.bag')]
+            if bag_files:
+                return data_folder
+        # Move up one directory
+        current_folder = os.path.dirname(current_folder)
+    return None
+
+def select_bag_file():
+    current_dir = os.getcwd()
+    data_folder = find_data_folder(current_dir)
+    
+    if not data_folder or not os.path.exists(data_folder):
+        print(f"No 'Data' folder containing .bag files was found starting from '{current_dir}'. Please run download_bags.sh")
+        return None, False
+    
+    bag_files = [f for f in os.listdir(data_folder) if f.endswith('.bag')]
+    if not bag_files:
+        print(f"No .bag files found in the 'Data' folder '{data_folder}'. Please run download_bags.sh")
+        return None, False
+    
+    for i, file in enumerate(bag_files):
+        print(f"{i}: {file}")
+    
+    while True:
+        try:
+            index = int(input(f"Select a .bag file by index (0 to {len(bag_files) - 1}): "))
+            if 0 <= index < len(bag_files):
+                return os.path.join(data_folder, bag_files[index]), True
+            else:
+                print("Invalid index. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
 
 def initialize_camera():
     pipeline = rs.pipeline()
@@ -31,8 +72,8 @@ def select_red_color(event, x, y, flags, param):
 
 def filter_red_colors(lab_frame, selected_color_lab, tolerance):
     # Define range around selected color in Lab space
-    lower_red = np.array([selected_color_lab[0] - tolerance, selected_color_lab[1] - 20, selected_color_lab[2] - 20])
-    upper_red = np.array([selected_color_lab[0] + tolerance, selected_color_lab[1] + 20, selected_color_lab[2] + 20])
+    lower_red = np.array([selected_color_lab[0] - tolerance, selected_color_lab[1] - tolerance, selected_color_lab[2] - tolerance])
+    upper_red = np.array([selected_color_lab[0] + tolerance, selected_color_lab[1] + tolerance, selected_color_lab[2] + tolerance])
 
     # Create mask for red colors in Lab space
     red_mask = cv2.inRange(lab_frame, lower_red, upper_red)
