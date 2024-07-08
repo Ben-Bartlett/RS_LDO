@@ -486,9 +486,9 @@ def toggle_geometries(vis, key):
     elif key == 68:  # 'd' key
         toggle_geometry(vis, downsampled_pcd)
     elif key == 65:  # 'p' key
-        toggle_geometry(vis, shifted_average_points)
-    elif key == 80:  # 'a' key
         toggle_geometry(vis, spline)
+    elif key == 80:  # 'a' key
+        toggle_geometry(vis,shifted_average_points )
     elif key == 67:  # 'c' key
         toggle_geometry(vis, cylinder_mesh)    
 
