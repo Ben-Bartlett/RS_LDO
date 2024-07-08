@@ -57,10 +57,13 @@ All developments were completed using Python and the realsense-viewer applicatio
 
 or
 
-- Utilise the bag files added to the repository. __This can be completed by running__
+- Utilise the bag files added to the repository. Download them at this link. I could not make a script to download the data, Fuck Onedrive.
+
+  [https://ulcampus-my.sharepoint.com/:f:/g/personal/17218187_studentmail_ul_ie/EtIYMD9JirNEpHhStkT-lnkBOESLD-65iAI_5KaVxzuHJg](https://ulcampus-my.sharepoint.com/:f:/g/personal/17218187_studentmail_ul_ie/EtIYMD9JirNEpHhStkT-lnkBOESLD-65iAI_5KaVxzuHJg) 
+
+- __Put the folder in the RS_LDO directory as RS_LDO/Data or leave it in ~/Downloads__. Because Onedrive is shit, if you download the entire folder, it will create a Zip file. This is not a problem. But they don't use ZIP standards. As such this will appear corrupted. Run the script called fix_zip.sh to be able to unzip the data
   ```bash
-  chmod +x download_data.sh
-  ./download_data.sh
+  chmod +x fix_zip.sh
 
 - Lastly install the Realsense SDK following the instructions [here](https://github.com/IntelRealSense/librealsense/blob/master/doc/distribution_linux.md)
   - verify with:
