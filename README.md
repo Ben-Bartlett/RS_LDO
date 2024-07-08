@@ -74,9 +74,16 @@ or
 ### Basic Usage
 This information is available in the subdirectories' README.md files but to see the code in action and verify the installation I would recommend starting with the initial code.
   ```bash
-  python /Code/Initial/Live_Scripts/Stream_RGB_Depth_2IR_live.py
+  python Code/Initial/Live_Scripts/Stream_RGB_Depth_2IR_live.py
   ```
 This should open the connected cameras live RGB, depth and IR streams. 
+
+_____
+For the final script run.
+  ```bash
+  python Code/Final/final.py
+  ```
+This file has most fuctionality added, visualisation options, spline to spline mapping etc. There is many comments and there are a few flags near the top to change to allow you to adjust what happens. For now I left all vis on. You can use it with the bags or with the live camera also with a flag change. It is defualted to bags.
 
 ## Utilising the Repo 
 ### First time
