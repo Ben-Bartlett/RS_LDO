@@ -59,7 +59,7 @@ or
 
 - Utilise the bag files added to the repository. Download them at this link. I could not make a script to download the data, Fuck Onedrive.
 
-  [https://ulcampus-my.sharepoint.com/:f:/g/personal/17218187_studentmail_ul_ie/EtIYMD9JirNEpHhStkT-lnkBOESLD-65iAI_5KaVxzuHJg](https://ulcampus-my.sharepoint.com/:f:/g/personal/17218187_studentmail_ul_ie/EtIYMD9JirNEpHhStkT-lnkBOESLD-65iAI_5KaVxzuHJg) 
+  [Data](https://ulcampus-my.sharepoint.com/personal/17218187_studentmail_ul_ie/_layouts/15/onedrive.aspx?id=%2Fpersonal%2F17218187%5Fstudentmail%5Ful%5Fie%2FDocuments%2FErasmus%2FData&ga=1) 
 
 - __Put the folder in the RS_LDO directory as RS_LDO/Data or leave it in ~/Downloads__. Because Onedrive is shit, if you download the entire folder, it will create a Zip file. This is not a problem. But they don't use ZIP standards. As such this will appear corrupted. Run the script called fix_zip.sh to be able to unzip the data
   ```bash
